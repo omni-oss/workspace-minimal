@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/omni-oss/json-schemas/refs/heads/main/generator.json
+name: workspace-minimal
+display_name: Minimal Omni Workspace
+description: Generates a minimal workspace
+
+prompts:
+  - type: text
+    name: workspace_name
+    message: What is the name of your workspace?
+
+vars:
+  workspace_name: "{{ prompts.workspace_name }}"
+
+actions:
+  - type: add
+    file: ./workspace.omni.yaml.tpl
+
+  - type: add-many
+    files:
+      - ./apps/**
+      - ./packages/**
+      - ./generators/**
